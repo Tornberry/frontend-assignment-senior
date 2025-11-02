@@ -1,6 +1,33 @@
-// TODO: Complete the useFetch hook to handle API calls and return data, loading, and error states
+import { useState, useEffect } from "react";
 
-export const mockUsers = [];
+export const useFetch = <T>(url: string) => {
+  const [data, setData] = useState<T | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<Error | null>(null);
 
-export const fetchMockUsers = async () => {
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+          throw new Error(`HTTP error status: ${response.status}`);
+        }
+
+        const result = await response.json();
+        setData(result);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error("An error occurred"));
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [url]);
+
+  return { data, loading, error };
 };

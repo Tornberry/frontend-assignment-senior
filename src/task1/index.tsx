@@ -1,5 +1,6 @@
 import { FC } from "react";
 import "./index.scss";
+import GitHubUsers from "./components/githubUsers";
 
 
 const Task1: FC = () => {
@@ -12,8 +13,10 @@ const Task1: FC = () => {
       {/* show the loading state here */}
       {/* show the error if any here */}
       {/* show the input search here*/}
+
+      {/** Loading, error and input are contained inside the GitHubUsers component */}
       <ul>
-        {/* show the filtered users here */}
+        <GitHubUsers />
       </ul>
     </div>
   );

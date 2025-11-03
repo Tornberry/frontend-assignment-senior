@@ -9,6 +9,7 @@ type TButton = {
   variant?: 'primary' | 'secondary' | 'danger';
   size?: 'small' | 'medium' | 'large';
   disabled?: boolean;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 // Define the styled button
@@ -54,12 +55,13 @@ const StyledButton = styled.button<{
   }
 `;
 
-const Button: FC<TButton> = ({ 
-  children, 
-  onClick, 
+const Button: FC<TButton> = ({
+  children,
+  onClick,
   variant = 'primary',
   size = 'medium',
-  disabled = false 
+  disabled = false,
+  type = 'button'
 }) => {
   const { theme } = useTheme();
 
@@ -90,7 +92,8 @@ const Button: FC<TButton> = ({
   const colors = getColors();
 
   return (
-    <StyledButton 
+    <StyledButton
+      type={type}
       onClick={onClick}
       $backgroundColor={colors.bg}
       $hoverColor={colors.hover}

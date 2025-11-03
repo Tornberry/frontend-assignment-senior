@@ -1,0 +1,89 @@
+.multi-step-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+
+  .progress-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: #e0e0e0;
+      z-index: 0;
+      transform: translateY(-50%);
+    }
+
+    .step {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #666;
+      position: relative;
+      z-index: 1;
+      transition: all 0.3s ease;
+
+      &.active {
+        background: #007bff;
+        color: white;
+      }
+    }
+  }
+
+  .form-step {
+    background: #f9f9f9;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    h2 {
+      margin: 0 0 8px 0;
+      color: #333;
+      font-size: 24px;
+    }
+
+    .checkbox-group {
+      margin-top: 8px;
+
+      label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        font-weight: normal;
+        color: #333;
+        font-size: 16px;
+
+        input[type="checkbox"] {
+          width: auto;
+          margin-right: 8px;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 12px;
+
+      button:last-child {
+        margin-left: auto;
+      }
+    }
+  }
+}

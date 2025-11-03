@@ -23,7 +23,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
         style={{
           backgroundColor: theme.background,
           color: theme.textPrimary,
-          height: '100vh',
+          minHeight: '100vh',
           transition: 'background-color 0.3s, color 0.3s',
         }}
       >

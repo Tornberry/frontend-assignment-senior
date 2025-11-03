@@ -30,8 +30,6 @@ const Menu: FunctionComponent = () => {
       <NavLink to="/task/2">Task 2</NavLink>
 
       <NavLink to="/task/3">Task 3</NavLink>
-
-      <Button onClick={() => toggleTheme()}><span>Toggle Theme</span></Button>
     </nav>
   );
 };

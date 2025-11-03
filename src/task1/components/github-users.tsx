@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useFetch } from "../hooks/useFetch";
+import { useFetch } from "../hooks/use-fetch";
 import { User } from "../types/user";
-import './gitHubUsers.scss';
+import './github-users.scss';
 
 function GitHubUsers() {
   const { data, loading, error } = useFetch<User[]>('https://api.github.com/users');

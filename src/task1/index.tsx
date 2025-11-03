@@ -1,6 +1,6 @@
 import { FC } from "react";
 import "./index.scss";
-import GitHubUsers from "./components/githubUsers";
+import GitHubUsers from "./components/github-users";
 
 
 const Task1: FC = () => {

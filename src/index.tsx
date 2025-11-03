@@ -14,9 +14,13 @@ import Intro from "./Intro";
 import Task1 from "./task1";
 import Task2 from "./task2";
 import Task3 from "./task3";
+import { ThemeProvider, useTheme } from "./task2/context/theme-context";
+import Button from "./task2/components/Button";
 
 
 const Menu: FunctionComponent = () => {
+  const { theme, toggleTheme } = useTheme()
+  
   return (
     <nav className="menu">
       <NavLink to="/">Intro</NavLink>
@@ -26,6 +30,8 @@ const Menu: FunctionComponent = () => {
       <NavLink to="/task/2">Task 2</NavLink>
 
       <NavLink to="/task/3">Task 3</NavLink>
+
+      <Button onClick={() => toggleTheme()}><span>Toggle Theme</span></Button>
     </nav>
   );
 };
@@ -131,26 +137,28 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <BrowserRouter>
-    <Routes>
-      <Route
-        path=""
-        element={
-          <Container>
-            <Intro />
-          </Container>
-        }
-      />
-      <Route
-        path="task/:id"
-        element={
-          <Container>
-            <Task />
-          </Container>
-        }
-      />
+  <ThemeProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path=""
+          element={
+            <Container>
+              <Intro />
+            </Container>
+          }
+        />
+        <Route
+          path="task/:id"
+          element={
+            <Container>
+              <Task />
+            </Container>
+          }
+        />
 
-      <Route path="*" element={<Navigate to="/" />} />
-    </Routes>
-  </BrowserRouter>
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </BrowserRouter>
+  </ThemeProvider>
 );

@@ -1,14 +1,45 @@
-import { describe, it } from "vitest";
+import { describe, it, expect, vi } from "vitest";
+import { render, screen, fireEvent } from "@testing-library/react";
+import "@testing-library/jest-dom";
 
-// Mock the useFetch hook
+vi.mock("../hooks/use-fetch", () => ({
+  useFetch: vi.fn(() => ({
+    data: [
+      { id: 1, login: "alice", avatar_url: "", html_url: "" },
+      { id: 2, login: "bob", avatar_url: "", html_url: "" },
+    ],
+    loading: false,
+    error: null,
+  })),
+}));
 
+import GitHubUsers from "./components/github-users";
 
-describe("Task1 Component", () => {
-  it("renders users and filters them by search term", async () => {
-
+describe("GitHubUsers component", () => {
+  it("renders a list of users", async () => {
+    render(<GitHubUsers />);
+    expect(await screen.findByText("alice")).toBeInTheDocument();
+    expect(await screen.findByText("bob")).toBeInTheDocument();
   });
 
-  it("shows no users found message when filter returns no results", async () => {
+  it("filters users by search input", async () => {
+    render(<GitHubUsers />);
+    const input = await screen.findByPlaceholderText(/search by username/i);
 
+    fireEvent.change(input, { target: { value: "alice" } });
+
+    expect(screen.getByText("alice")).toBeInTheDocument();
+    expect(screen.queryByText("bob")).not.toBeInTheDocument();
+  });
+
+  it("shows 'no users found' when no matches", async () => {
+    render(<GitHubUsers />);
+    const input = await screen.findByPlaceholderText(/search by username/i);
+
+    fireEvent.change(input, { target: { value: "charlie" } });
+
+    expect(
+      screen.getByText(/no users found matching "charlie"/i)
+    ).toBeInTheDocument();
   });
 });

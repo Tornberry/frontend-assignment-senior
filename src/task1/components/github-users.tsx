@@ -3,7 +3,7 @@ import { useFetch } from "../hooks/use-fetch";
 import { User } from "../types/user";
 import './github-users.scss';
 
-function GitHubUsers() {
+export const GitHubUsers = () => {
   const { data, loading, error } = useFetch<User[]>('https://api.github.com/users');
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -51,6 +51,4 @@ function GitHubUsers() {
       )}
     </div>
   );
-}
-
-export default GitHubUsers;
+};

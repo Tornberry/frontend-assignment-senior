@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 import React, { FC, ReactNode } from "react";
 import { useTheme } from "../../context/theme-context";
 
-// Define the type for the card
 type TCard = {
   children: ReactNode;
   title?: string;
@@ -12,7 +11,6 @@ type TCard = {
   onClick?: () => void;
 }
 
-// Define the styled card
 const StyledCard = styled.div<{
   $backgroundColor: string;
   $borderColor: string;

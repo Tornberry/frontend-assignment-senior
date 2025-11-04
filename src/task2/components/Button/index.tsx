@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 import React, { FC, ReactElement } from "react";
 import { useTheme } from "../../context/theme-context";
 
-// Define the type for the button
 type TButton = {
   children: ReactElement | string;
   onClick?: () => void;
@@ -12,7 +11,6 @@ type TButton = {
   type?: 'button' | 'submit' | 'reset';
 }
 
-// Define the styled button
 const StyledButton = styled.button<{ 
   $backgroundColor: string;
   $hoverColor: string;
@@ -65,7 +63,6 @@ const Button: FC<TButton> = ({
 }) => {
   const { theme } = useTheme();
 
-  // Determine colors based on variant
   const getColors = () => {
     switch(variant) {
       case 'secondary':

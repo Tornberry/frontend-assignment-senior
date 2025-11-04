@@ -1,8 +1,9 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import { GitHubUsers } from "./components/github-users";
 
-vi.mock("../hooks/use-fetch", () => ({
+vi.mock("./hooks/use-fetch", () => ({
   useFetch: vi.fn(() => ({
     data: [
       { id: 1, login: "alice", avatar_url: "", html_url: "" },
@@ -12,8 +13,6 @@ vi.mock("../hooks/use-fetch", () => ({
     error: null,
   })),
 }));
-
-import GitHubUsers from "./components/github-users";
 
 describe("GitHubUsers component", () => {
   it("renders a list of users", async () => {
